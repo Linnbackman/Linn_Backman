@@ -1,26 +1,30 @@
+// --- Likes & Hearts ---
 document.querySelectorAll('.reactions').forEach(section => {
   const likeBtn = section.querySelector('.like-btn');
   const heartBtn = section.querySelector('.heart-btn');
   const count = section.querySelector('.count');
-  let likes = 0;
+  let likes = 0; // Lokal counter per item
 
-  likeBtn.addEventListener('click', () => {
+  const handleClick = (btn) => {
     likes++;
     count.textContent = likes;
-    likeBtn.style.transform = 'scale(1.3)';
-    setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
-  });
 
-  heartBtn.addEventListener('click', () => {
-    likes++;
-    count.textContent = likes;
-    heartBtn.style.transform = 'scale(1.3)';
-    setTimeout(() => heartBtn.style.transform = 'scale(1)', 200);
-  });
+    // Animation: scale & pulse
+    btn.style.transform = 'scale(1.3)';
+    btn.classList.add('pulse');
+
+    setTimeout(() => {
+      btn.style.transform = 'scale(1)';
+      btn.classList.remove('pulse');
+    }, 300);
+  };
+
+  likeBtn.addEventListener('click', () => handleClick(likeBtn));
+  heartBtn.addEventListener('click', () => handleClick(heartBtn));
 });
 
 
-// Fade in effect on scroll
+// --- Fade-in effect on scroll ---
 const fadeElements = document.querySelectorAll('.art-item, section');
 
 function handleFade() {
@@ -34,36 +38,3 @@ function handleFade() {
 
 window.addEventListener('scroll', handleFade);
 window.addEventListener('load', handleFade);
-
-
-likeBtn.addEventListener('click', () => {
-  likes++;
-  count.textContent = likes;
-  likeBtn.classList.add('pulse');
-  setTimeout(() => likeBtn.classList.remove('pulse'), 300);
-});
-
-heartBtn.addEventListener('click', () => {
-  likes++;
-  count.textContent = likes;
-  heartBtn.classList.add('pulse');
-  setTimeout(() => heartBtn.classList.remove('pulse'), 300);
-});
-
-
-
-
-  const updateLikes = () => {
-    get(likesRef).then(snapshot => {
-      const newLikes = (snapshot.exists() ? snapshot.val() : 0) + 1;
-      set(likesRef, newLikes);
-      count.textContent = newLikes;
-    });
-  };
-
-  likeBtn.addEventListener('click', updateLikes);
-  heartBtn.addEventListener('click', updateLikes);
-});
-
-
-
