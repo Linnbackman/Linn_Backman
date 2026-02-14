@@ -46,15 +46,7 @@ const db = firebase.database();
 firebase.auth().signInAnonymously().catch(console.error);
 
 
-const firebaseConfig = {
-  apiKey: "DIN_API_KEY",
-  authDomain: "linn-likes.firebaseapp.com",
-  databaseURL: "https://linn-likes-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "linn-likes",
-  storageBucket: "linn-likes.appspot.com",
-  messagingSenderId: "DIN_SENDER_ID",
-  appId: "DIN_APP_ID"
-};
+
 
 
 
