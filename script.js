@@ -38,3 +38,26 @@ function handleFade() {
 
 window.addEventListener('scroll', handleFade);
 window.addEventListener('load', handleFade);
+
+
+
+
+// Din Firebase-konfiguration från projektinställningar
+const firebaseConfig = {
+  apiKey: "DIN_API_KEY",
+  authDomain: "DITT_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://DITT_PROJECT_ID-default-rtdb.firebaseio.com",
+  projectId: "DITT_PROJECT_ID",
+  storageBucket: "DITT_PROJECT_ID.appspot.com",
+  messagingSenderId: "DIN_SENDER_ID",
+  appId: "DIN_APP_ID"
+};
+
+// Initiera Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Logga in anonymt
+firebase.auth().signInAnonymously().catch(console.error);
+
+
